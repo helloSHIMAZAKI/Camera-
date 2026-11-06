@@ -16,6 +16,8 @@ import { HeritageCameraSelector } from './components/HeritageCameraSelector';
 import { FilmStockSelector } from './components/FilmStockSelector';
 import { ProManualControls } from './components/ProManualControls';
 import { DarkroomLightbox } from './components/DarkroomLightbox';
+import { InstallAndHostModal } from './components/InstallAndHostModal';
+import { usePWAInstall } from './hooks/usePWAInstall';
 import {
   Camera,
   Film,
@@ -26,7 +28,9 @@ import {
   Maximize2,
   RefreshCw,
   FolderOpen,
-  Image as ImageIcon
+  Image as ImageIcon,
+  Smartphone,
+  Github
 } from 'lucide-react';
 
 export default function App() {
@@ -69,6 +73,10 @@ export default function App() {
   // Shutter & Captures
   const [shutterTriggerTime, setShutterTriggerTime] = useState<number>(0);
   const [capturedPhotos, setCapturedPhotos] = useState<CapturedPhoto[]>([]);
+
+  // PWA Install & GitHub Hosting Modal State
+  const [isInstallModalOpen, setIsInstallModalOpen] = useState<boolean>(false);
+  const { isInstalled, isInstallable, install } = usePWAInstall();
 
   // Switch Heritage Camera
   const handleSelectCamera = useCallback((camera: CameraProfile) => {
@@ -181,21 +189,36 @@ export default function App() {
           </button>
         </nav>
 
-        {/* Zone 3: 1 primary action */}
-        <div className="flex items-center gap-2.5 shrink-0">
+        {/* Zone 3: Actions & iPhone Install */}
+        <div className="flex items-center gap-2 shrink-0">
+          <button
+            onClick={() => {
+              if (isInstallable) {
+                install();
+              } else {
+                setIsInstallModalOpen(true);
+              }
+            }}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-sky-950/60 hover:bg-sky-900/60 border border-sky-600/50 text-sky-300 text-xs font-medium transition-colors whitespace-nowrap cursor-pointer"
+            title="Install on iPhone / Host on GitHub"
+          >
+            <Smartphone className="w-3.5 h-3.5" />
+            <span className="hidden sm:inline">{isInstalled ? 'iPhone App Installed' : 'Install on iPhone'}</span>
+            <span className="sm:hidden">Install</span>
+          </button>
           <button
             onClick={() => setActiveDrawer(activeDrawer === 'lidar_studio' ? 'none' : 'lidar_studio')}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-neutral-900 hover:bg-neutral-800 text-sky-400 border border-neutral-800 text-xs font-medium transition-colors whitespace-nowrap cursor-pointer"
+            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-neutral-900 hover:bg-neutral-800 text-sky-400 border border-neutral-800 text-xs font-medium transition-colors whitespace-nowrap cursor-pointer"
           >
             <Sun className="w-3.5 h-3.5" />
-            <span>LiDAR Mapper</span>
+            <span>LiDAR</span>
           </button>
           <button
             onClick={handleShutterPress}
             className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-red-600 hover:bg-red-500 text-white text-xs font-semibold shadow-sm transition-colors whitespace-nowrap cursor-pointer active:scale-95"
           >
             <Camera className="w-3.5 h-3.5" />
-            <span>Shoot Shutter</span>
+            <span>Shoot</span>
           </button>
         </div>
       </header>
@@ -439,6 +462,13 @@ export default function App() {
           </aside>
         )}
       </div>
+
+      {/* iPhone PWA Install & GitHub Hosting Guide Modal */}
+      <InstallAndHostModal
+        isOpen={isInstallModalOpen}
+        onClose={() => setIsInstallModalOpen(false)}
+        appUrl="https://ais-pre-demqzhh626izxirwzdmwii-554650489894.asia-east1.run.app"
+      />
     </div>
   );
 }

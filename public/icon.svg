@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <radialGradient id="lensGrad" cx="50%" cy="50%" r="50%" fx="35%" fy="35%">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="50%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </radialGradient>
+    <linearGradient id="goldRing" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fbbf24"/>
+      <stop offset="50%" stop-color="#d97706"/>
+      <stop offset="100%" stop-color="#b45309"/>
+    </linearGradient>
+    <linearGradient id="lidarGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#0284c7"/>
+    </linearGradient>
+    <linearGradient id="bladeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#334155"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Squircle / App Icon Background -->
+  <rect width="512" height="512" rx="112" fill="#090a0f"/>
+  
+  <!-- Outer Metallic Lens Barrel -->
+  <circle cx="256" cy="256" r="210" fill="url(#lensGrad)" stroke="#1e293b" stroke-width="8"/>
+  <circle cx="256" cy="256" r="198" fill="none" stroke="url(#goldRing)" stroke-width="4" stroke-opacity="0.8"/>
+  <circle cx="256" cy="256" r="186" fill="#0b0f19" stroke="#334155" stroke-width="2"/>
+
+  <!-- Knurled grip ticks -->
+  <g stroke="#64748b" stroke-width="2" opacity="0.6">
+    <line x1="256" y1="48" x2="256" y2="58"/>
+    <line x1="256" y1="454" x2="256" y2="464"/>
+    <line x1="48" y1="256" x2="58" y2="256"/>
+    <line x1="454" y1="256" x2="464" y2="256"/>
+    <line x1="109" y1="109" x2="116" y2="116"/>
+    <line x1="403" y1="403" x2="396" y2="396"/>
+    <line x1="403" y1="109" x2="396" y2="116"/>
+    <line x1="109" y1="403" x2="116" y2="396"/>
+  </g>
+
+  <!-- Aperture Diaphragm Blades -->
+  <g transform="translate(256, 256)">
+    <!-- Blade 1 -->
+    <path d="M 0,-130 L 75,-40 L 40,75 L -80,40 Z" fill="url(#bladeGrad)" stroke="#475569" stroke-width="2"/>
+    <!-- Blade 2 -->
+    <path d="M 0,-130 L 75,-40 L 40,75 L -80,40 Z" fill="url(#bladeGrad)" stroke="#475569" stroke-width="2" transform="rotate(60)"/>
+    <!-- Blade 3 -->
+    <path d="M 0,-130 L 75,-40 L 40,75 L -80,40 Z" fill="url(#bladeGrad)" stroke="#475569" stroke-width="2" transform="rotate(120)"/>
+    <!-- Blade 4 -->
+    <path d="M 0,-130 L 75,-40 L 40,75 L -80,40 Z" fill="url(#bladeGrad)" stroke="#475569" stroke-width="2" transform="rotate(180)"/>
+    <!-- Blade 5 -->
+    <path d="M 0,-130 L 75,-40 L 40,75 L -80,40 Z" fill="url(#bladeGrad)" stroke="#475569" stroke-width="2" transform="rotate(240)"/>
+    <!-- Blade 6 -->
+    <path d="M 0,-130 L 75,-40 L 40,75 L -80,40 Z" fill="url(#bladeGrad)" stroke="#475569" stroke-width="2" transform="rotate(300)"/>
+
+    <!-- Center Aperture Opening / Sensor Glass with LiDAR Beam -->
+    <circle cx="0" cy="0" r="42" fill="#020617"/>
+    <circle cx="0" cy="0" r="40" fill="none" stroke="url(#lidarGrad)" stroke-width="3"/>
+    
+    <!-- Optical reflection glass glint -->
+    <ellipse cx="-12" cy="-12" rx="18" ry="10" transform="rotate(-30, -12, -12)" fill="rgba(255, 255, 255, 0.25)"/>
+  </g>
+
+  <!-- Signature Leica Red Accent Dot (Top Right) -->
+  <circle cx="390" cy="122" r="22" fill="#dc2626" stroke="#991b1b" stroke-width="3"/>
+  <text x="390" y="127" font-family="-apple-system, BlinkMacSystemFont, sans-serif" font-size="12" font-weight="900" fill="#ffffff" text-anchor="middle">PRO</text>
+</svg>
