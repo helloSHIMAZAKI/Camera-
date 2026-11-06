@@ -1,0 +1,9 @@
+{
+  "name": "Aperture Pro & Heritage Camera",
+  "description": "Professional photography and cinematography camera for iPhone 15 Pro Max with LiDAR spatial lighting studio mapper and authentic iconic vintage cameras (Leica, Hasselblad, Contax, Nikon, Pentax).",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
